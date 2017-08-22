@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+    {% for post in post_list %}
+        <article class="post post-{{ post.pk }}">
+            <h1 class="entry-title">
+                <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a>
+            </h1>
+            <div class="entry-meta">
+                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                <span class="post-date"><a href="#"><time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                <span class="comments-link"><a href="#">4 comments</a></span>
+                <span class="views-count"><a href="#">588 read</a></span>
+            </div>
+        </article>
+    {% empty %}
+        <div class="no-post">There is no article now!</div>
+    {% endfor %}
+
+
+{% endblock main %}
